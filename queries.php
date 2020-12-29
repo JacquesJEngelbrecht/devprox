@@ -59,12 +59,12 @@ function test_id_duplicates($conn, $dbName, $input) {
     }
 }
 
-function update_database($conn, $dbName, $name, $surname, $idNo, $dob) {
+function update_database($conn, $dbName, $name, $surname, $idNo, $dob_validated, $dob) {
      if (mysqli_select_db($conn, $dbName)) {
          $sql = "INSERT INTO person_detail 
         (id, name, surname, id_number, date_of_birth) 
         VALUES 
-        (DEFAULT, '$name' ,'$surname' ,'$idNo' ,'$dob')";
+        (DEFAULT, '$name' ,'$surname' ,'$idNo' ,'$dob_validated')";
         if ($conn->query($sql) === TRUE) {
             echo "<div class='container'><div class='row success_row'>Name: ".$name.
             "</div><div class='row success_row'>Surname: ".$surname.

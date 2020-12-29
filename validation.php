@@ -63,7 +63,7 @@ if(isset($_POST['post'])) {
             $month = substr($dob, 3, 2); echo "<br>";
             $year = substr($dob, 6, 4); echo "<br>";
             $dob_validated = $year."/".$month."/".$day;
-            update_database($conn, $dbName, $name, $surname, $idNo, $dob_validated);
+            update_database($conn, $dbName, $name, $surname, $idNo, $dob_validated, $dob);
             $name = $surname = $idNo = $dob = $century = '';
         }
     }

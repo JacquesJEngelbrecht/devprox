@@ -7,7 +7,7 @@ include_once('validation.php');
 <body>
     <div class="container mt-5">
         <div class="row">
-            <h3>Please enter all information required!</h3>
+            <h3>Please enter required fields!</h3>
         </div>
         <div class="row">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" enctype="multipart/form-data" method="POST" id="register_form">
