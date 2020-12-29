@@ -5,7 +5,7 @@ if(isset($_POST['generate_db'])) {
     if (!mysqli_select_db($conn, $dbName)){
         $sql = "CREATE DATABASE IF NOT EXISTS ".$dbName;
         if ($conn->query($sql) === TRUE) {
-            echo "Database created successfully";
+            echo "Database created successfully<br>";
         } else {
             echo "Error creating database: " . $conn->error;
         }
@@ -21,7 +21,7 @@ if(isset($_POST['generate_db'])) {
             PRIMARY KEY (id)
             ) ";
         if ($conn->query($sql) === TRUE) {
-            echo "Table created successfully";
+            echo "Table created successfully<br>";
         } else {
             echo "Error creating table: " . $conn->error;
         }
@@ -36,7 +36,7 @@ if(isset($_POST['generate_db'])) {
         (DEFAULT, 'Lucy','James','7711105424088','1977/11/10')
         ";
         if ($conn->query($sql) === TRUE) {
-            echo "Records inserted successfully";
+            echo "Records inserted successfully<br>";
         } else {
             echo "Error inserting records: " . $conn->error;
         }
@@ -57,4 +57,22 @@ function test_id_duplicates($conn, $dbName, $input) {
             echo "Error ".$sql."<br>".$conn->error;
         }
     }
+}
+
+function update_database($conn, $dbName, $name, $surname, $idNo, $dob) {
+     if (mysqli_select_db($conn, $dbName)) {
+         $sql = "INSERT INTO person_detail 
+        (id, name, surname, id_number, date_of_birth) 
+        VALUES 
+        (DEFAULT, '$name' ,'$surname' ,'$idNo' ,'$dob')";
+        if ($conn->query($sql) === TRUE) {
+            echo "<div class='container'><div class='row success_row'>Name: ".$name.
+            "</div><div class='row success_row'>Surname: ".$surname.
+            "</div><div class='row success_row'>Id Number: ".$idNo.
+            "</div><div class='row success_row'>Date of Birth: ".$dob.
+            "</div><div class='row success_row'>inserted successfully!</div>";
+        } else {
+            echo "Error inserting records: " . $conn->error;
+        }
+     }
 }
