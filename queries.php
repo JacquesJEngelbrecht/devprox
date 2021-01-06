@@ -41,6 +41,24 @@ if(isset($_POST['generate_db'])) {
             echo "Error inserting records: " . $conn->error;
         }
     }
+
+    if (mysqli_select_db($conn, $dbName)) {
+        $sql = "CREATE TABLE IF NOT EXISTS file_detail (
+            id BIGINT NOT NULL AUTO_INCREMENT,
+            name VARCHAR(255) NOT NULL,
+            surname VARCHAR(255) NOT NULL,
+            initials VARCHAR(10) NOT NULL,
+            age VARCHAR(3) NOT NULL,
+            date_of_birth DATE,
+            PRIMARY KEY (id)
+            ) ";
+        if ($conn->query($sql) === TRUE) {
+            echo "Table created successfully<br>";
+        } else {
+            echo "Error creating table: " . $conn->error;
+        }
+    }
+
 }
 
 function test_id_duplicates($conn, $dbName, $input) {
@@ -75,4 +93,32 @@ function update_database($conn, $dbName, $name, $surname, $idNo, $dob_validated,
             echo "Error inserting records: " . $conn->error;
         }
      }
+}
+
+if(isset($_POST['upload'])) {
+    if (mysqli_select_db($conn, $dbName)){
+        if($_FILES['output_file']['name']) {
+            $filename_test = explode(".", $_FILES['output_file']['name']);
+            if(end($filename_test) == "csv") {
+                $filename = $_FILES['output_file']['name'];
+                $sql = "LOAD DATA LOCAL INFILE '$filename' 
+                INTO TABLE file_detail
+                CHARACTER SET UTF8 FIELDS TERMINATED BY ','  
+                LINES TERMINATED BY '\n'
+                IGNORE 1 LINES
+                (`name`, `surname`, `initials`, `age`, @DATE_STR)
+                SET `date_of_birth` = STR_TO_DATE(@DATE_STR, '%Y/%m/%d')
+                ";
+                if ($conn->query($sql) === TRUE) {
+                    $succsess_message =  mysqli_affected_rows($conn) . " Records inserted successfully<br>";
+                } else {
+                    $failure_message = "Error inserting records: " . $conn->error;
+                }
+            }  else {
+                $file_error = "Please select a file of type CSV!";
+            }
+        } else {
+            $file_error = "Please select a file!";;
+        }
+    }
 }
