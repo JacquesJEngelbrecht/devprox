@@ -36,7 +36,7 @@ include_once('queries.php');
             <div class="row">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" enctype="multipart/form-data" method="POST">
                     <div class="form-group">   
-                        <input type="file" name="output_file" class="form-control">
+                        <input type="file" name="output_file" class="form-control" id="file_input">
                         <span class="file_error" id="file_error" style="color: red; font-size: 24px;"><?php if(isset($file_error)) { echo $file_error; } else { echo "Required!"; } ?></span>
                     </div>    
             <div class="row">        

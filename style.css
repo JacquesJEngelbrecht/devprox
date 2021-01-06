@@ -11,6 +11,7 @@ body {
 .row {
   align-items: center;
   justify-content: center;
+  text-align: center;
   margin: 0 auto;
 }
 
@@ -27,6 +28,11 @@ label {
   font-size: larger;
   font-weight: bolder;
   color: green;
+}
+
+#file_input {
+  background-color: transparent;
+  border: transparent;
 }
 
 @media only screen and (max-width: 600px) {
