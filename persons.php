@@ -39,7 +39,12 @@ include_once('validation.php');
     <div class="container">
         <div class="row">
             <button type="submit" name="post" form="register_form" class="btn btn-primary btn-lg" id="post_btn">POST</button>
-
+        </div>
+        <div class="row">
+            <label>Readyfor test 2 ?</label>
+        </div>    
+        <div class="row">
+            <a href="index.php"><button class="btn btn-success">Go to test options</button></a>
         </div>
     </div>
         

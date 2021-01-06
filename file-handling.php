@@ -1,9 +1,10 @@
 <?php
 include_once('queries.php');
-
+ini_set('memory_limit', '-1');
 $records_amount = 0;
 $error_count = 0;
 $records_error = '';
+
 
 $names_array = ['0'=>'Angus James','1'=>'Bart Jay','2'=>'Charley Cooper','3'=>'Danny','4'=>'Eric','5'=>'Freddie','6'=>'Grant','7'=>'Harry','8'=>'Iain','9'=>'Jock','10'=>'Kevin','11'=>'Lemmy','12'=>'Malcolm','13'=>'Neil','14'=>'Ozzy','15'=>'Peter','16'=>'Quinton','17'=>'Rudolph','18'=>'Shane','19'=>'Terry'];
 $surnames_array = ['0'=>'Adams','1'=>'Bree','2'=>'Clammy','3'=>'Deadish','4'=>'English','5'=>'Froggy','6'=>'Graham','7'=>'Hetfield','8'=>'Irus','9'=>'Jameson','10'=>'Kilmister','11'=>'Leary','12'=>'Masterson','13'=>'Newton','14'=>'Osborne','15'=>'Prince','16'=>'Quint','17'=>'Reese','18'=>'Stevens','19'=>'Truijo'];
@@ -65,5 +66,11 @@ function generate($input, $names_array, $surnames_array) {
                 fputcsv($file_handler, $merged_array[$i]);
             }
     } 
+
+    $file_count = count(file('output.csv')) - 1;
     fclose($file_handler);  
+    echo '<script type="text/javascript">alert("' . $file_count . ' Records Added!")</script>';
 }   
+
+
+

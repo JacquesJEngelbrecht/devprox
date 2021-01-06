@@ -40,7 +40,7 @@ include_once('queries.php');
                         <span class="file_error" id="file_error" style="color: red; font-size: 24px;"><?php if(isset($file_error)) { echo $file_error; } else { echo "Required!"; } ?></span>
                     </div>    
             <div class="row">        
-                <button id="records_btn" type="submit" name="upload" class="btn btn-primary">Generate Records</button>
+                <button id="records_btn" type="submit" name="upload" class="btn btn-primary">Upload to database</button>
             </div>
             </form>
         </div>   
